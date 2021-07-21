@@ -1,0 +1,49 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@500&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Red-Hat Text', sans-serif;
+} */
+
+.nav-bar {
+    background-color: black;
+    width: auto;
+    margin: auto 0px;
+    padding: 5px;
+}
+
+.nav-item {
+    color: white;
+    width: 300px;
+    display: inline;
+    margin: 0px auto;
+    padding: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+a:hover {
+    transition: 0.3s ease;
+    text-decoration: none;
+    background-color: #04AA6D;
+}
+
+a {
+    color: white;
+    width: 300px;
+    display: inline;
+    margin: 0px auto;
+    padding: 10px;
+    text-align: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+.home-picture {
+    padding: 1%;
+    width: 100%;
+    border-radius: 8px;
+    height: 800px;
+    align-items: center;
+    text-align: center;
+}
