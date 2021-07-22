@@ -8,9 +8,8 @@ const app = Sammy('#root', function() {
     this.get('/home', function(context) {
         extendContext(context)
             .then(function() {
-                console.log(context);
                 this.partial('/templates/home.hbs')
-            })
+            });
     });
 
     this.get('/register', function(context) {
@@ -37,7 +36,7 @@ const app = Sammy('#root', function() {
         extendContext(context)
             .then(function() {
                 this.partial('templates/login.hbs')
-            })
+            });
     });
 
     this.post('/login', function(context) {
@@ -64,8 +63,23 @@ const app = Sammy('#root', function() {
         extendContext(context)
             .then(function() {
                 this.partial('/templates/addProduct.hbs')
+            });
+    });
+
+    this.post('/add-product', function(context) {
+        const { productName, productPrice, productImageUrl, productDescription, productAdditionalInfo } = context.params;
+        console.log(productName, productPrice, productDescription, productImageUrl, productAdditionalInfo);
+        db.collection('products').add({
+                productName,
+                productPrice,
+                productDescription,
+                productImageUrl,
+                productAdditionalInfo
             })
-    })
+            .then((response) => {
+                this.redirect('/check-products')
+            })
+    });
 });
 
 

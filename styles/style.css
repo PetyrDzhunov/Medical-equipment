@@ -13,6 +13,10 @@ footer {
     padding: 5px;
 }
 
+footer a:hover {
+    color: black;
+}
+
 .nav-item {
     color: white;
     width: 300px;
@@ -21,6 +25,10 @@ footer {
     padding: 10px;
     text-align: center;
     align-items: center;
+}
+
+textarea {
+    width: 50%;
 }
 
 a:hover {
@@ -91,7 +99,7 @@ form div {
 }
 
 form input {
-    width: 30%;
+    width: 50%;
 }
 
 .submit-button {
