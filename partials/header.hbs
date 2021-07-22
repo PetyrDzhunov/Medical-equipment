@@ -1,11 +1,17 @@
 <nav class="nav-bar">
 	<ul>
-	</ul>
 	{{#if loggedIn}}
 <div class='welcome-div'>
 	<li class="nav-item">Welcome, {{email}}</li>
 </div>
 		<li class="nav-item"><a href="/home">Home</a></li>
+		<div class="dropdown">
+	<button class="dropbtn">Products</button>
+	<div class="dropdown-content">
+		<a href="/add-product">Add new Product</a>
+		<a href="/check-products">Check all products</a>
+	</div>
+</div>
 	<a href="/logout">Logout</a>
 	{{else}}
 		<li class="nav-item"><a href="/register">Register</a></li>
@@ -13,5 +19,6 @@
 		<div class="welcome-div">
 	<p>Welcome Guest</p>
 		</div>
+	</ul>
 	{{/if}}
 </nav>
