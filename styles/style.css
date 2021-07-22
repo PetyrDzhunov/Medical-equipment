@@ -163,3 +163,7 @@ form input {
     text-decoration: none;
     color: blue;
 }
+
+.products {
+    display: inline;
+}
