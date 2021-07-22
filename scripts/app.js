@@ -57,6 +57,14 @@ const app = Sammy('#root', function() {
                 this.redirect('/home');
             })
             .catch(errorHandler)
+    });
+
+    this.get('/add-product', function(context) {
+        console.log(context);
+        extendContext(context)
+            .then(function() {
+                this.partial('/templates/addProduct.hbs')
+            })
     })
 });
 
