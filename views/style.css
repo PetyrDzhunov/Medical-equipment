@@ -5,7 +5,8 @@
     font-family: 'Red-Hat Text', sans-serif;
 } */
 
-.nav-bar {
+.nav-bar,
+footer {
     background-color: black;
     width: auto;
     margin: auto 0px;
@@ -46,4 +47,29 @@ a {
     height: 800px;
     align-items: center;
     text-align: center;
+}
+
+footer {
+    width: 100%;
+    background-color: blue;
+    color: white;
+}
+
+footer p {
+    padding: 3%;
+    border-top: 2px solid blue;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+    font-style: italic;
+    border-top: 2px solid orange;
+}
+
+footer p a {
+    color: orange;
+    text-decoration: none;
+}
+
+footer p a:hover {
+    text-decoration: underline blue;
 }

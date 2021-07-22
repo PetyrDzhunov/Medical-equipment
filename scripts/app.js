@@ -7,7 +7,8 @@ const app = Sammy('#root', function() {
     this.get('/home', function(context) {
         console.log('home now');
         this.loadPartials({
-                'header': '/partials/header.hbs'
+                'header': '/partials/header.hbs',
+                'footer': '/partials/footer.hbs'
             })
             .then(function() {
                 this.partial('/templates/home.hbs')
