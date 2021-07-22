@@ -32,6 +32,13 @@ const app = Sammy('#root', function() {
             })
             .catch(errorHandler)
     });
+
+    this.get('/login', function(context) {
+        extendContext(context)
+            .then(function() {
+                this.partial('templates/login.hbs')
+            })
+    });
 });
 
 
