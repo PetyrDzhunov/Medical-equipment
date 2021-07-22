@@ -80,6 +80,19 @@ const app = Sammy('#root', function() {
                 this.redirect('/check-products')
             })
     });
+
+    this.get('/check-products', function(context) {
+        const products = getProducts()
+            .then((response) => {
+                context.offers = response.docs.map((offer) => { return { id: offer.id, ...offer.data() } })
+            });
+        console.log(products);
+        this.loadPartials('./templates/product.hbs')
+        extendContext(context)
+            .then(function() {
+                this.partial('/templates/products.hbs')
+            })
+    });
 });
 
 
@@ -115,4 +128,10 @@ function getUserData() {
 
 function clearUserData() {
     localStorage.removeItem('user');
+}
+
+function getProducts() {
+    const products = db.collection('products').doc().get();
+    console.log(products);
+    return products;
 }
