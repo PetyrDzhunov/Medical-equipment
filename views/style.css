@@ -26,11 +26,11 @@ footer {
 a:hover {
     transition: 0.3s ease;
     text-decoration: none;
-    background-color: #04AA6D;
+    color: blue;
 }
 
 a {
-    color: white;
+    color: red;
     width: 300px;
     display: inline;
     margin: 0px auto;
@@ -72,4 +72,35 @@ footer p a {
 
 footer p a:hover {
     text-decoration: underline blue;
+}
+
+.form-info {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#register-form {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#register-form div {
+    padding: 10px;
+}
+
+#register-form input {
+    width: 30%;
+}
+
+#submit-button {
+    background-color: green;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
 }

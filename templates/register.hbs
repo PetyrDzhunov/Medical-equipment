@@ -1,0 +1,22 @@
+{{>header}}
+<h1 class="form-info">Register</h1>
+<p class="form-info">Already registered?
+	<a href="/login">Login now</a> and checkout our best medical equipments!
+</p>
+<form id="register-form" method="POST" action="/register">
+<div>
+	<input type="email" name="email" placeholder="Email...">
+</div>
+<div>
+	<input type="password" name="password" placeholder="Password">
+</div>
+<div>
+	<input type="password" name="rePassword" placeholder="Re-password">
+</div>
+<div>
+	<p class="message"></p>
+	<input id='submit-button' type="submit" value="Register">
+</div>
+
+</form>
+{{>footer}}
