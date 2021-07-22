@@ -80,21 +80,21 @@ footer p a:hover {
     text-align: center;
 }
 
-#register-form {
+form {
     align-items: center;
     justify-content: center;
     text-align: center;
 }
 
-#register-form div {
+form div {
     padding: 10px;
 }
 
-#register-form input {
+form input {
     width: 30%;
 }
 
-#submit-button {
+.submit-button {
     background-color: green;
     border: none;
     color: white;
