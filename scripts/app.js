@@ -50,6 +50,14 @@ const app = Sammy('#root', function() {
             .catch(errorHandler)
     });
 
+    this.get('/logout', function(context) {
+        userModel.signOut()
+            .then(() => {
+                clearUserData();
+                this.redirect('/home');
+            })
+            .catch(errorHandler)
+    })
 });
 
 
