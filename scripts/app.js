@@ -1,6 +1,5 @@
 const userModel = firebase.auth();
 const db = firebase.firestore();
-console.log(db);
 //database?
 
 const app = Sammy('#root', function() {
@@ -19,7 +18,19 @@ const app = Sammy('#root', function() {
             .then(function() {
                 this.partial('/templates/register.hbs')
             });
+    });
 
+    this.post('/register', function(context) {
+        const { email, password, rePassword } = context.params;
+        if (password !== rePassword) {
+            return;
+        }
+        userModel.createUserWithEmailAndPassword(email, password)
+            .then((userData) => {
+                console.log(userData);
+                this.redirect('/login')
+            })
+            .catch(errorHandler)
     });
 });
 
@@ -35,4 +46,8 @@ function extendContext(context) {
         'header': '/partials/header.hbs',
         'footer': '/partials/footer.hbs'
     })
+}
+
+function errorHandler(error) {
+    console.log(error);
 }
