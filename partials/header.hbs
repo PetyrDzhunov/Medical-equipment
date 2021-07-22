@@ -4,4 +4,12 @@
 		<li class="nav-item"><a href="/register">Register</a></li>
 		<li class="nav-item"><a href="/login">Login</a></li>
 	</ul>
+<div class='welcome-div'>
+	{{#if loggedIn}}
+	<li class="nav-item">Welcome {{email}}</li>
+	<a href="/logout">Logout</a>
+	{{else}}
+	<p>Welcome Guest</p>
+	{{/if}}
+</div>
 </nav>

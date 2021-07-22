@@ -104,3 +104,11 @@ form input {
     display: inline-block;
     font-size: 16px;
 }
+
+.welcome-div {
+    color: white;
+    text-align: center;
+    justify-content: right;
+    padding: 0 auto;
+    font-size: 20px;
+}
