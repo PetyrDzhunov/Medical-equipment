@@ -1,0 +1,21 @@
+<div class="product">
+	<div class="product-field">
+		{{product.productName}}
+	</div>
+	<div class="product-field">
+		{{product.productPrice}}
+	</div>
+	<div class="product-field">
+		<img src="{{product.productImageUrl}}" width="400px">
+	</div>
+	<div class="product-field">
+		{{product.productDescription}}
+	</div>
+	<div class="product-field">
+		{{product.productAdditionalInfo}}
+	</div>
+	<div>
+		<a href="/buy/:productId"><button class="buy-item">Buy</button></a>
+		<a href="/edit/:editId"><button class="edit-item">Edit</button></a>
+	</div>
+</div>

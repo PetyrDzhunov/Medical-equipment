@@ -59,7 +59,6 @@ const app = Sammy('#root', function() {
     });
 
     this.get('/add-product', function(context) {
-        console.log(context);
         extendContext(context)
             .then(function() {
                 this.partial('/templates/addProduct.hbs')
@@ -68,7 +67,6 @@ const app = Sammy('#root', function() {
 
     this.post('/add-product', function(context) {
         const { productName, productPrice, productImageUrl, productDescription, productAdditionalInfo } = context.params;
-        console.log(productName, productPrice, productDescription, productImageUrl, productAdditionalInfo);
         db.collection('products').add({
                 productName,
                 productPrice,
@@ -82,18 +80,23 @@ const app = Sammy('#root', function() {
     });
 
     this.get('/check-products', function(context) {
-        const products = getProducts()
+        const user = getUserData();
+        context.loggedIn = Boolean(user);
+        context.email = user ? user.email : '';
+        getProducts()
             .then((response) => {
-                context.offers = response.docs.map((offer) => { return { id: offer.id, ...offer.data() } })
-            });
-        console.log(products);
-        this.loadPartials('./templates/product.hbs')
-        extendContext(context)
-            .then(function() {
-                this.partial('/templates/products.hbs')
+                context.products = response.docs.map((product) => { return { id: product.id, product: product.data() } });
+                this.loadPartials({
+                        'product': './partials/product.hbs',
+                        'header': './partials/header.hbs',
+                        'footer': './partials/footer.hbs'
+                    })
+                    .then(function() {
+                        this.partial('./templates/products.hbs')
+                    })
             })
     });
-});
+})
 
 
 
@@ -131,7 +134,6 @@ function clearUserData() {
 }
 
 function getProducts() {
-    const products = db.collection('products').doc().get();
-    console.log(products);
+    const products = db.collection('products').get();
     return products;
 }
