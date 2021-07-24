@@ -103,7 +103,7 @@ form input {
 }
 
 .submit-button,
-.buy-item {
+.details-item {
     background-color: green;
     border: none;
     color: white;
@@ -116,6 +116,17 @@ form input {
 
 .edit-item {
     background-color: rgb(122, 188, 219);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.delete-item {
+    background-color: red;
     border: none;
     color: white;
     padding: 15px 32px;

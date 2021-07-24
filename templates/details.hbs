@@ -1,0 +1,25 @@
+{{>header}}
+<div class="offer-details">
+	<h1>{{product.productName}}</h1>
+	<div class="info">
+		<img src="{{productImageUrl}}" alt="{{product.productName}}">
+		<div class="description">{{product.productDescription}}
+			<br>
+			<br>
+			<p class="price">{{product.price}}</p>
+		</div>
+	</div>
+	<div class="actions">
+		{{#if product.imTheSalesman}}
+		<button class="edit-item"><a href="/edit/{{product.id}}">Edit</a></button>
+		<button class="delete-item"><a href="/delete/{{product.id}}">Delete</a></button>
+		{{else}}
+		{{#if product.imInTheClientsList}}
+		<span>You already bought it !</span>
+		{{else}}
+		<button class="edit-item"><a href="/buy/{{product.id}}">Buy</a></button>
+		{{/if}}
+		{{/if}}
+	</div>
+</div>
+{{>footer}}
