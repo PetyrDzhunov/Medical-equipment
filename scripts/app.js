@@ -101,22 +101,23 @@ const app = Sammy('#root', function() {
 
     this.get('/details/:id', function(context) {
         const { id } = context.params;
-        db.collection('product')
+        console.log(id)
+        db.collection('products')
             .doc(id)
             .get()
             .then((response) => {
-                const { uid } = getUserData()
+                const { uid } = getUserData();
                 const actualOfferData = response.data();
-                const imTheSalesMan = actualOfferData.salesman === uid;
+                const imTheSalesman = actualOfferData.salesman === uid;
                 const userIndex = actualOfferData.clients.indexOf(uid);
-                const imInTheClientsList = userIndex > -1;
-                context.product = {...actualOfferData, imTheSalesMan, id: product.id, imInTheClientsList }
-
+                const imInTheClientsList = userIndex > -1
+                context.product = {...actualOfferData, imTheSalesman, id, imInTheClientsList, }
                 extendContext(context)
                     .then(function() {
                         this.partial('../templates/details.hbs')
                     })
             })
+            .catch(errorHandler)
     });
 
 
