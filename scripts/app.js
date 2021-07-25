@@ -102,16 +102,14 @@ const app = Sammy('#root', function() {
     this.get('/details/:id', function(context) {
         const { id } = context.params;
         console.log(id)
-        db.collection('products')
-            .doc(id)
-            .get()
+        getProduct(id)
             .then((response) => {
                 const { uid } = getUserData();
-                const actualOfferData = response.data();
-                const imTheSalesman = actualOfferData.salesman === uid;
-                const userIndex = actualOfferData.clients.indexOf(uid);
+                const actualProductData = response.data();
+                const imTheSalesman = actualProductData.salesman === uid;
+                const userIndex = actualProductData.clients.indexOf(uid);
                 const imInTheClientsList = userIndex > -1
-                context.product = {...actualOfferData, imTheSalesman, id, imInTheClientsList, }
+                context.product = {...actualProductData, imTheSalesman, id, imInTheClientsList, }
                 extendContext(context)
                     .then(function() {
                         this.partial('../templates/details.hbs')
@@ -120,7 +118,39 @@ const app = Sammy('#root', function() {
             .catch(errorHandler)
     });
 
+    this.get('/buy/:id', function(context) {
+        // get the ID of the product
+        const { id } = context.params;
+        //get the user ID
+        const { uid } = getUserData();
+        //get the current product;
+        getProduct(id)
+            .then((response) => {
+                const actualProductData = response.data();
+                //get the USER ID
+                //add the UID to the clients list of that item;
+                actualProductData.clients.push(uid);
+                // remove it from the check all products page;
+                return db.collection('products').doc(id).set(actualProductData)
+            })
+            .then(() => {
+                this.redirect(`/details/${id}`)
+            })
+            .catch(errorHandler)
+            // add it to my-cart;
 
+        // redirect to home
+
+    });
+
+    this.get('/delete/:id', function(context) {
+        const { id } = context.params;
+        db.collection('products').doc(id).delete()
+            .then(() => {
+                this.redirect('/check-products')
+            })
+            .catch(errorHandler)
+    });
 })
 
 
@@ -156,6 +186,11 @@ function getUserData() {
 
 function clearUserData() {
     localStorage.removeItem('user');
+}
+
+function getProduct(id) {
+    const product = db.collection('products').doc(id).get();
+    return product;
 }
 
 function getProducts() {
